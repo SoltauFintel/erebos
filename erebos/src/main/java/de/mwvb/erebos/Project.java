@@ -1,3 +1,4 @@
+/* Lizenz: Apache 2.0 */
 package de.mwvb.erebos;
 
 import java.io.File;

@@ -12,6 +12,8 @@ Ant-Datei build.xml (Taget build) ausführen. Die ausführbare Anwendung liegt dan
 und kann mit bin/erebos.bat _{pfad}_ auf einem Windows-PC gestartet werden.
 _{pfad}_ ist dabei ein Workspace-Ordner oder ein Ordner, in dem nach Workspaces gesucht werden soll.
 
+Tooling: Java 8, Gradle 1.9, Ant, Eclipse Mars.1
+
 ## Lizenz
 
 [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0)

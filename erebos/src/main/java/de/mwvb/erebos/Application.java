@@ -1,3 +1,4 @@
+/* Lizenz: Apache 2.0 */
 package de.mwvb.erebos;
 
 import java.io.File;
@@ -12,11 +13,15 @@ import java.util.TreeSet;
 
 import de.mwvb.erebos.eclipse.Workspace;
 
+/**
+ * Erebos Startklasse, Java 8
+ * 
+ * @author Marcus Warm
+ */
 public class Application {
-	// TODO Command line: depth, Ausgabe Verzeichnis
 	
 	public static void main(String[] args) {
-		System.out.println("Erebos Eclipse Workspace Finder 0.1");
+		System.out.println("Erebos Eclipse Workspace Finder 0.2");
 		if (args.length != 1) {
 			System.out.println("Bitte Pfad angeben in dem nach Eclipse Workspaces gesucht werden soll.");
 			System.exit(-1);
@@ -41,17 +46,17 @@ public class Application {
 		sb.append("<html><head><title>");
 		sb.append(pfad);
 		sb.append("</title><style>* { font-family: Arial; } th { background-color: #aaa; }</style></head><body><h1>Eclipse Workspaces</h1>");
-		sb.append("<table border=\"1\" cellpadding=\"3\" cellspacing=\"0\"><tr><th>Project</th><th>Project dir</th>"
+		sb.append("\n<table border=\"1\" cellpadding=\"3\" cellspacing=\"0\"><tr><th>Project</th><th>Project dir</th>"
 				+ "<th>Git dir</th><th>Git remote</th></tr>");
 		Set<String> repos = new TreeSet<>();
 		int np = 0;
 		Map<String, Integer> map = new HashMap<>();
 		for (File ws : workspaces) {
 			List<Project> projects = new Workspace().getProjects(ws.getAbsolutePath());
-			sb.append("<tr><td colspan=\"4\" style=\"background-color: #ccf;\"><b>" + ws.getAbsolutePath() + "</b> &nbsp;(" + projects.size() + " Projekt"
+			sb.append("\n<tr><td colspan=\"4\" style=\"background-color: #ccf;\"><b>" + ws.getAbsolutePath() + "</b> &nbsp;(" + projects.size() + " Projekt"
 					+ (projects.size() == 1 ? "" : "e") + ")</td></tr>");
 			for (Project p : projects) {
-				sb.append("<tr><td style=\"padding-left: 0.5cm;\">" + p.getDir().getName() + "</td><td>" + p.getDir().getAbsolutePath() + "</td>");
+				sb.append("\n<tr><td style=\"padding-left: 0.5cm;\">" + p.getDir().getName() + "</td><td>" + p.getDir().getAbsolutePath() + "</td>");
 				sb.append("<td>" + (p.getGitDir() != null ? p.getGitDir().getAbsolutePath() : "") + "</td>");
 				String f = "";
 				if (p.getRemote() != null && p.getRemote().contains("github")) {
@@ -71,21 +76,22 @@ public class Application {
 			}
 			np += projects.size();
 		}
-		sb.append("<tr><td colspan=\"4\" style=\"background-color: #aaa;\">Anzahl Workspaces: "
+		sb.append("\n<tr><td colspan=\"4\" style=\"background-color: #aaa;\">Anzahl Workspaces: "
 				+ workspaces.size() + ", Anzahl Projekte: " + np + "</td></tr>");
-		sb.append("</table><h2>Git Repositories</h2><ul>");
+		sb.append("</table>\n<h2>Git Repositories</h2><ul>");
 		for (String repo : repos) {
 			sb.append("<li>" + repo + "</li>");
 		}
 		sb.append("</ul>Anzahl: " + repos.size() + "</p>");
-		sb.append("<p><h2>Mehrfach vorhandene Projekte</h2><ul>");
+		sb.append("\n<p><h2>Mehrfach vorhandene Projekte</h2><ul>");
 		for (Map.Entry<String, Integer> e : map.entrySet()) {
 			if (e.getValue() > 1) {
-				sb.append("<li>" + e.getValue() + "x - "+ e.getKey()+"</li>");
+				sb.append("\n<li>" + e.getValue() + "x - "+ e.getKey()+"</li>");
 			}
 		}
-		sb.append("</ol></p>");
-		sb.append("</body></html>");
+		sb.append("\n</ol></p>");
+		sb.append("\n<p><font size=\"1\">Erstellt mit <a href=\"https://github.com/SoltauFintel/erebos\">Erebos</a></font></p>");
+		sb.append("\n</body>\n</html>\n");
 		write(sb);
 	}
 

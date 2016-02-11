@@ -1,3 +1,4 @@
+/* Lizenz: Apache 2.0 */
 package de.mwvb.erebos.eclipse;
 
 import java.io.DataInputStream;
@@ -14,6 +15,8 @@ import de.mwvb.erebos.Project;
 import de.mwvb.erebos.WorkspaceException;
 
 /**
+ * Erebos (wichtigste Klasse)
+ * 
  * <p>Zweck 1: Eclipse Workspace Ordner finden.
  * 
  * <p>Zweck 2: In Workspace Ordner die Projekte analysieren.

@@ -10,10 +10,10 @@
 	<macrodef name="gradle">
 		<attribute name="task"/>
 		<sequential>
-	        <exec executable="cmd" failonerror="true">
-	        	<arg line="/c gradlew.bat -g D:\jarcache\gradle @{task}"/>
-	        </exec>
+		<exec executable="cmd" failonerror="true">
+			<arg line="/c gradlew.bat @{task}"/>
+		</exec>
 		</sequential>
 	</macrodef>
-	
+
 </project>

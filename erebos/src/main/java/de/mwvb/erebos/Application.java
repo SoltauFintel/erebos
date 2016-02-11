@@ -76,9 +76,10 @@ public class Application {
 	}
 
 	private String css() {
-		return "* { font-family: Arial; }"
+		return "* { font-family: Arial; color: black; }"
 				+ " th { background-color: #aaa; }"
-				+ " a:hover { color: red; text-decoration: none; }";
+				+ " a { color: black; }"
+				+ " a:hover { color: blue; text-decoration: none; }";
 	}
 
 	private void generateWorkspaceHTML(List<File> workspaces) {
@@ -90,7 +91,9 @@ public class Application {
 			sb.append("\n<tr><td colspan=\"4\" style=\"background-color: #ccf;\"><b>" + ws.getAbsolutePath() + "</b>"
 					+ " &nbsp;(" + projects.size() + " Projekt"
 					+ (projects.size() == 1 ? "" : "e") + ")</td></tr>");
+			
 			generateProjectHTML(projects);
+			
 			anzahlProjects += projects.size();
 		}
 		sb.append("\n<tr><td colspan=\"4\" style=\"background-color: #aaa;\">Anzahl Workspaces: "
@@ -106,7 +109,7 @@ public class Application {
 			if (p.getRemote() != null && p.getRemote().contains("github")) {
 				f = " style=\"background-color: #fc0;\"";
 			}
-			sb.append("<td" + f + ">" + (p.getRemote() != null ? p.getRemote() : "") + "</td>");
+			sb.append("<td" + f + ">" + (p.getRemote() != null ? makeLink(p.getRemote()) : "") + "</td>");
 			sb.append("</tr>");
 			if (p.getGitDir() != null) repos.add(p.getGitDir().getAbsolutePath());
 			if (p.getRemote() != null) repos.add(p.getRemote());
@@ -119,11 +122,18 @@ public class Application {
 			}
 		}
 	}
+	
+	private String makeLink(String url) {
+		if (url.startsWith("https://")) {
+			url = "<a href=\"" + url + "\">" + url + "</a>";
+		}
+		return url;
+	}
 
 	private void generateReposHTML() {
 		sb.append("<h2>Git Repositories</h2><ul>");
 		for (String repo : repos) {
-			sb.append("<li>" + repo + "</li>");
+			sb.append("<li>" + makeLink(repo) + "</li>");
 		}
 		sb.append("</ul>Anzahl: " + repos.size() + "</p>");
 	}

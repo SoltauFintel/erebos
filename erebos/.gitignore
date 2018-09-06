@@ -1,4 +1,4 @@
 /bin/
-/workspaces.html
+/workspaces*.html
 /.gradle/
 /build/

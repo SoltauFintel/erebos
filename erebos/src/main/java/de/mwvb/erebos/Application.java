@@ -86,6 +86,11 @@ public class Application {
 		sb.append("<h1>Eclipse Workspaces</h1>");
 		sb.append("\n<table border=\"1\" cellpadding=\"3\" cellspacing=\"0\"><tr><th>Project</th><th>Project dir</th>"
 				+ "<th>Git dir</th><th>Git remote</th></tr>");
+		sb.append("<ul>");
+		for (File ws : workspaces) {
+			sb.append("<li style=\"font-family: Courier New;\">" + ws.getAbsolutePath() + "</li>");
+		}
+		sb.append("</ul>");
 		for (File ws : workspaces) {
 			List<Project> projects = new Workspace().getProjects(ws.getAbsolutePath());
 			sb.append("\n<tr><td colspan=\"4\" style=\"background-color: #ccf;\"><b>" + ws.getAbsolutePath() + "</b>"

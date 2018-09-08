@@ -11,7 +11,7 @@
 		<attribute name="task"/>
 		<sequential>
 		<exec executable="cmd" failonerror="true">
-			<arg line="/c gradlew.bat @{task}"/>
+        	<arg line="/c gradlew.bat -g C:\jarcache\gradle @{task}"/>
 		</exec>
 		</sequential>
 	</macrodef>

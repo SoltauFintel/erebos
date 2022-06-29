@@ -159,7 +159,7 @@ public class Application {
 			FileWriter fw = new FileWriter(dn);
 			fw.write(sb.toString());
 			fw.close();
-			System.out.println(dn + " erzeugt");
+            System.out.println(new File(dn).getAbsolutePath() + " erzeugt");
 			System.out.println();
 		} catch (IOException e) {
 			throw new RuntimeException(e);

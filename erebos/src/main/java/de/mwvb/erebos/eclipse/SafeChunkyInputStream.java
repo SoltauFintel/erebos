@@ -34,6 +34,7 @@ public class SafeChunkyInputStream extends InputStream {
 		chunkLength = chunkLength + end - start;
 	}
 
+	@Override
 	public int available() throws IOException {
 		return chunkLength - nextByteInChunk;
 	}
@@ -59,6 +60,7 @@ public class SafeChunkyInputStream extends InputStream {
 		}
 	}
 
+	@Override
 	public void close() throws IOException {
 		input.close();
 	}
@@ -115,6 +117,7 @@ public class SafeChunkyInputStream extends InputStream {
 		findChunkStart();
 	}
 
+	@Override
 	public int read() throws IOException {
 		if (endOfFile)
 			return -1;

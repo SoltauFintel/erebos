@@ -14,7 +14,7 @@ import java.util.TreeSet;
 import de.mwvb.erebos.eclipse.Workspace;
 
 /**
- * Erebos Startklasse, Java 8
+ * Erebos Startklasse, Java 17
  * 
  * @author Marcus Warm
  */
@@ -25,7 +25,7 @@ public class Application {
 	private Map<String, Integer> projectAnzahlMap;
 	
 	public static void main(String[] args) {
-		System.out.println("Erebos Eclipse Workspace Finder 0.2");
+		System.out.println("Erebos Eclipse Workspace Finder 1.0");
 		if (args.length != 1) {
 			System.out.println("Bitte Pfad angeben in dem nach Eclipse Workspaces gesucht werden soll.");
 			System.exit(-1);

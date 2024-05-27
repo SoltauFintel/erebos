@@ -2,12 +2,15 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'application'
 
-sourceCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
-mainClassName = 'de.mwvb.erebos.Application'
+application {
+    mainClass = 'de.mwvb.erebos.Application'
+}
 
 dependencies {
-	testCompile 'junit:junit:4.12'
+	testImplementation 'junit:junit:4.12'
 }
 
 repositories {

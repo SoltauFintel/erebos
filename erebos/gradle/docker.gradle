@@ -1,0 +1,25 @@
+docker {
+    javaApplication {
+        ports = [ 8080 ]
+        baseImage = 'eclipse-temurin:17.0.7_7-jre-alpine'
+        images = [ findProperty('dockerreg') + (findProperty('image') ?: project.name) ]
+        maintainer = 'SoltauFintel'
+        mainClassName = application.mainClass
+    }
+}
+
+dockerBuildImage {
+    doFirst {
+        if (!findProperty('dockerreg')) {
+            throw new GradleException('Please specify -Pdockerreg=...')
+        }
+    }
+}
+
+dockerCreateDockerfile {
+    outputs.upToDateWhen { false }
+    doLast {
+        def dockerfile = destFile.get().asFile
+        dockerfile.text = dockerfile.text.replace('WORKDIR', 'RUN apk add bash\nENV TZ=Europe/Berlin\nWORKDIR')
+    }
+}
